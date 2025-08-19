@@ -17,4 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/chatbot', [App\Http\Controllers\chatbot\MainController::class, 'index'])->name('chatbot.index');
+
 require __DIR__.'/auth.php';
