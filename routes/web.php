@@ -19,8 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('tawk')->group(function () {
+        Route::get('/chatbot', [App\Http\Controllers\chatbot\MainController::class, 'index'])->name('chatbot.index');
+        Route::post('/chatbot/webhook', [App\Http\Controllers\chatbot\MainController::class, 'handleWebhook'])->name('chatbot.webhook');
+    });
 });
 
-Route::get('/chatbot', [App\Http\Controllers\chatbot\MainController::class, 'index'])->name('chatbot.index');
 
-require __DIR__.'/auth.php';
+    require __DIR__.'/auth.php';
